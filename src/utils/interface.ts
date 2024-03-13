@@ -13,3 +13,8 @@ export interface IUser {
     query: object
     path: object
   }
+
+export interface ILogin{
+    email: string
+    password: string
+}
