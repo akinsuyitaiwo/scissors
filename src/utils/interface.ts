@@ -18,3 +18,11 @@ export interface ILogin{
     email: string
     password: string
 }
+export interface IUrl{
+  longUrl: string;
+  shortUrl: string;
+}
+
+export interface IQRCode{
+  qrCode : string
+}

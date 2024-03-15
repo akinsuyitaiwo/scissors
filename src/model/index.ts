@@ -1,7 +1,8 @@
 import User from "./user"
+import Url from "./url";
 
 const models = {
-    User
+    User, Url
 };
 
 export default models
