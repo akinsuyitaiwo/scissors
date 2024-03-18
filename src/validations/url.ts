@@ -3,9 +3,8 @@ import { IUrl } from "../utils/interface";
 
 const validateUrl = (url:IUrl) => {
     const schema = Joi.object({
-        longURL: { type: String, required: true },
-        shortURL: { type: String, required: true, unique: true },
-    })
+        longUrl: Joi.string().required().uri()
+        })
     return schema.validate(url)
 }
 

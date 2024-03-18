@@ -19,6 +19,7 @@ export interface ILogin{
     password: string
 }
 export interface IUrl{
+  _id?: string
   longUrl: string;
   shortUrl: string;
 }

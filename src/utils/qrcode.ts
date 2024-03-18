@@ -14,11 +14,12 @@ export async function generateQRCode(data: string, filePath: string): Promise<vo
     } catch (err) {
         console.error('Error generating QR code:', err);
     }
+    generateQRCode(data, filePath);
 }
 
 // Example usage
 const data = 'https://example.com'; // Data you want to encode in QR code
 const filePath = 'example.png'; // File path to save the generated QR code
 
-generateQRCode(data, filePath);
+
 
