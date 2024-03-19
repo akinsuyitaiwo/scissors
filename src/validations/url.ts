@@ -8,4 +8,12 @@ const validateUrl = (url:IUrl) => {
     return schema.validate(url)
 }
 
-export default validateUrl
+const validateShortenCode = (shortCode: string) => {
+    const schema = Joi.object({
+        longUrl: Joi.string().required().uri(),
+        shortCode: Joi.string().min(1).max(4)
+    })
+    return schema.validate(shortCode)
+}
+
+export {validateUrl, validateShortenCode}
