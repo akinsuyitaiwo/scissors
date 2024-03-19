@@ -33,7 +33,7 @@ export const shortenUrl = async (req: Request, res: Response) =>{
             longUrl,
             shortUrl,
             // qrCode,
-            user: _id
+            userId: _id
         })
         return successResponse(res, 200, "Url shortning  successful", newUrl);
 
@@ -77,7 +77,7 @@ export const customiseUrl = async( req: Request, res: Response)=>{
             longUrl,
             shortCode,
             shortUrl,
-            user : _id
+            userId : _id
         })
         return successResponse(res, 200, "Custom url created succesfully", urlData)
     } catch (error) {
@@ -87,13 +87,15 @@ export const customiseUrl = async( req: Request, res: Response)=>{
 } 
 export const getUrlById = async (req: Request, res: Response) => {
     try {
-        const {_id} = req.params
-        const url = await models.Url.findById({_id});
+        const {userId} = req.params
+        const url = await models.Url.find({userId});
+        console.log(url)
         if(!url){
             return errorResponse(res, 404, "URL does not exist.");
         }
-        return url;
+        return successResponse(res, 200, "Url fetched successfully", url);
     } catch (error) {
+        console.log(error)
         return errorResponse(res, 500, "Server error")
     }
 }

@@ -1,12 +1,10 @@
 import { Schema, model } from "mongoose";
 import { IUrl } from "../utils/interface";
-import { string } from "joi";
 
 const urlSchema = new Schema ({
     longUrl : {
         type: String,
         required: true,
-        unique: true,
     },
     shortUrl : {
         type: String,
