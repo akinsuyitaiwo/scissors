@@ -1,14 +1,23 @@
 import {Router} from "express"
-import { shortenUrl, getUrlById, verifyUrl, customiseUrl} from "../controller/url"
+import { shortenUrl, customiseUrl, viewLink, viewLinks, getURLAnalytics} from "../controller/url"
 import Authentication from "../middleware/authentication"
 
 const {verifyToken}= Authentication
 
 const router = Router()
 
-router.post( "/shorten", verifyToken, shortenUrl)
-router.post("/", verifyToken, customiseUrl)
-router.get("/user/:userId", verifyToken, getUrlById)
-router.get("/:shortCode", verifyUrl)
+router.get("/create", (req, res) => {
+	res.render("createUrl");
+});
+router.get("/customize", (req, res) => {
+	res.render("customize");
+});
+
+router.post( "/create", verifyToken, shortenUrl)
+router.post("/customize", verifyToken, customiseUrl)
+router.get("/", verifyToken, viewLinks);
+router.get("/:shortCode", viewLink);
+router.get("/analytics/:shortCode", verifyToken, getURLAnalytics);
+
 
 export default router

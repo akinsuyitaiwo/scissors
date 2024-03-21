@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Dashboard</title>
+    <style>
+        body {
+            background-color: linen;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .link-item {
+            margin-bottom: 10px;
+            margin: blue;
+        }
+        .link-item a {
+            text-decoration: none;
+            color: blue;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="link-item">
+            <a href="/url/customize">Customize a URL</a>
+        </div>
+        <br><br><br><br><br><br><br>
+        <div class="link-item">
+            <a href="/url/create">Create a URL</a>
+        </div>
+        <br><br><br><br><br><br><br>
+        <div class="link-item">
+            <a href="/view/:shortCode">View a Link</a>
+        </div>
+        <br><br><br><br><br><br><br>
+        <div class="link-item">
+            <a href="/view-all">View All Links</a>
+        </div>
+        <br><br><br><br><br><br><br>
+        <div class="link-item">
+            <a href="/analytics">Get Analytics</a>
+        </div>
+    </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer>
+            <p>&copy; 2024 SCISSORS All rights reserved.</p>
+        </footer>
+</body>
+</html>

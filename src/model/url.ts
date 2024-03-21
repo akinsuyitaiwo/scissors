@@ -22,6 +22,18 @@ const urlSchema = new Schema ({
         type : Number,
         default: 0
     },
+    clicks: [{
+        timestamp: {
+            type: Date,
+            default: Date.now
+        },
+        ipAddress: {
+            type: String
+        },
+        userAgent: {
+            type: String
+        }
+    }],
     QRCode :{
         type: String
     }

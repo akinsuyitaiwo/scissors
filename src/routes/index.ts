@@ -5,6 +5,6 @@ import url from "./url"
 const router = Router();
 
 router.use('/users', user)
-router.use('/', url)
+router.use('/url', url)
 
 export default router;

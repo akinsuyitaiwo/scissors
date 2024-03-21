@@ -22,6 +22,15 @@ export interface IUrl{
   _id?: string
   longUrl: string;
   shortUrl: string;
+  QRCode: string
+  clicks: {
+    timestamp: Date;
+    ipAddress: string;
+    userAgent: string;
+}[];
+clickCount: number;
+createdAt?: Date;
+updatedAt?: Date;
 }
 
 export interface IQRCode{

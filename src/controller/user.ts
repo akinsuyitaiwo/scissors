@@ -22,7 +22,8 @@ export const createUser = async (req:Request, res : Response) =>{
             username ,
             email ,
             password: hashPassword});
-            return successResponse(res,200,"Successfully created User",newUser);
+            await newUser.save();
+            return res.status(201).render("login");
     } catch (error) {
 
         return errorResponse(res,500,"Error creating the user");
@@ -33,7 +34,7 @@ export const loginUser = async (req: Request, res: Response) => {
     try {
         const {error, value} = validatelogin(req.body)
         if (error) {
-            return errorResponse(res, 400, error.message);
+            return errorResponse(res, 400, error.message).render("register");
         }
         const {email, password} = value
         const user = await models.User.findOne({email})
@@ -45,7 +46,11 @@ export const loginUser = async (req: Request, res: Response) => {
             return errorResponse(res,401, "Incorrect password, please input correct password")
         }
         const token = await generateToken({_id: user._id, email});
-        return successResponse(res, 200, "Logged in successfully", token)
+        res.cookie("token", token, { httpOnly: true });
+        return res.status(200).render(("dashboard"),
+        {
+            token
+        })
     } catch (error) {
         return errorResponse(res, 500, "server error")
     }

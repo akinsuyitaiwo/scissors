@@ -1,0 +1,56 @@
+<!-- views/login.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: linen;
+      justify-content: center;
+    }
+    ul {
+      display: inline-block;
+    }
+    .logo{
+      justify-content: center;
+    }
+    h1 {
+      color: maroon;
+      margin-left: 40px;
+    }
+    </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="/">SCISSORS APP</a></div>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="/users/register">Signup</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <h1>SIGN IN</h1>
+  </header>
+
+  <section id="login-form">
+    <form action="/users/login" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </section>
+  <br>
+  <footer>
+    <p>Don't have an account? <a href="/users/register">Sign Up</a></p>
+    <p>&copy; 2024 SCISSORS All rights reserved.</p>
+  </footer>
+</body>
+</html>

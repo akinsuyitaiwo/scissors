@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize URL</title>
+    <style>
+        body {
+            background-color: linen;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .input-field {
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customize Your URL</h1>
+    <form action="/shorten" method="post">
+        <label for="longURL">Long URL:</label><br>
+        <input type="text" id="longURL" name="longURL" required><br>
+        <label for="customURL">Custom Shortcode (optional):</label><br>
+        <input type="text" id="customURL" name="customURL"><br>
+        <button type="submit">Shorten URL</button>
+    </form>
+    <% if(shortURL) { %>
+        <h2>Shortened URL:</h2>
+        <p><%= shortURL %></p>
+        <h2>QR Code:</h2>
+        <img src="<%= qrCodeData %>">
+    <% } %>
+        <br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+    <footer>
+        <p>&copy; 2024 SCISSORS All rights reserved.</p>
+      </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .url-info {
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Details</h1>
+        <div class="url-info">
+            <p><strong>Long URL:</strong> <%= longURL %></p>
+            <p><strong>Shortened URL:</strong> <%= shortenedURL %></p>
+            <p><strong>Short Code:</strong> <%= shortCode %></p>
+        </div>
+        <div class="qr-code">
+            <% if (qrCodeData) { %>
+                <img src="<%= qrCodeData %>" alt="QR Code">
+            <% } else { %>
+                <p>No QR code available</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
