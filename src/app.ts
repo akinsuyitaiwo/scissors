@@ -13,15 +13,15 @@ const app = express();
 const port = 5000 || config.PORT;
 
 
-// const limiter = rateLimit({
-// 	windowMs: 0.5 * 60 * 1000,
-// 	max: 3, 
-// 	standardHeaders: true,
-// 	legacyHeaders: false,
-// });
-// app.use(limiter)
+const limiter = rateLimit({
+	windowMs: 0.5 * 60 * 1000,
+	max: 3, 
+	standardHeaders: true,
+	legacyHeaders: false,
+});
+app.use(limiter)
 app.use(express.static(path.join(__dirname, '../public')));
-app.set('views', path.join(__dirname, './views'));
+app.set('views', path.join(__dirname, '../public/views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json())
