@@ -8,7 +8,7 @@
   <meta property="og:title" content="Scissors - URL Shortener">
   <meta property="og:url" content="https://scissors-alt.onrender.com/">
   <meta property="og:type" content="website">
-  <title>URL Shortener || Custom Shortener </title>
+  <title>URL Shortener || Dashboard </title>
   <style type="text/css">
      body {
         background-color: linen;
@@ -43,18 +43,31 @@
   </header>
   <main>
     <section id="urlbox">
-      <h1>Paste the URL to be shortened</br>
-        Note: Always start your link with "https://"</h1>
-      <form action="/custom" method="post">
-        <div id="formurl">
-          <input type="url" name="longURL" placeholder="Enter the Link here"><br>
-          <div id="formurl">
-            <input type="text" name="shortCode" placeholder="Your custom code"><br>
-            <div id="formbutton">
-              <input type="submit" value="Get Short Link">
-            </div>
-          </div>
-      </form>
+      <h1>Shortened URLs</h1>
+      <% if (user) { %>
+      <p><b>Welcome, <%= user.username %>!</b></p>
+      <% } else { %>
+      <p>Kindly login to view your shortened URLs.</p>
+      <% } %>
+      <div>
+        <% if (shortURLs.length > 0) { %>
+        <h2>Your Shortened URLs:
+          <hr>
+        </h2>
+        <ul>
+          <% shortURLs.forEach(url => { %>
+          <li>
+            Inputed URL - <%= url.longURL %></br>
+            Shorten URL - <a href="<%= url.shortURL %>"><%= url.shortURL %></a></br>
+            <a href="/analytics/<%= url.shortCode %>" target="_blank"> View Analytics</a>
+            <hr>
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p>No shortened URLs found.</p>
+        <% } %>
+      </div>
       <hero>
         <a href="/views/dashboard">Go back to dashboard</a>
       </hero>
@@ -62,7 +75,8 @@
   </main>
   <footer>
     <div id="footerbox">
-      <div>&copy; 2024 SCISSORS All rights reserved</div>
+      <div>&copy; 2024 SCISSORS All rights reservedk</div>
+    </div>
   </footer>
 </body>
 

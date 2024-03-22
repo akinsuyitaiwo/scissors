@@ -35,7 +35,9 @@ export const shortenUrl = async (req: Request, res: Response) =>{
             QRCode: qrCodeData,
             userId: _id
         })
-        return res.status(200).render("viewOne");
+        return res.status(200).render(("result"), {
+            newUrl
+        });
 
     } catch (error) {
         console.log(error);
@@ -67,26 +69,14 @@ export const customiseUrl = async( req: Request, res: Response)=>{
             QRCode: qrCodeDataURL,
             userId : _id
         })
-        return successResponse(res, 200, "Custom url created succesfully", urlData)
+        return res.status(200).render(("result"),{
+            data: urlData
+        })
     } catch (error) {
         console.log(error)
         return errorResponse(res, 500, "Server error") 
     }
 } 
-export const getUrlById = async (req: Request, res: Response) => {
-    try {
-        const {userId} = req.params
-        const url = await models.Url.find({userId});
-        console.log(url)
-        if(!url){
-            return errorResponse(res, 404, "URL does not exist.");
-        }
-        return successResponse(res, 200, "Url fetched successfully", url);
-    } catch (error) {
-        console.log(error)
-        return errorResponse(res, 500, "Server error")
-    }
-}
 export const viewLinks = async (req: Request, res: Response) => {
 	try {
 		const { _id } = req.details;
@@ -96,7 +86,9 @@ export const viewLinks = async (req: Request, res: Response) => {
 		}
 		const URLs = await models.Url.find({ userId: user._id });
 		const shortURLs = URLs.map(url => ({ shortURL: url.shortUrl, longURL: url.longUrl }));
-        return successResponse(res, 200, "List of all shortened URLs is generated successfully", shortURLs);
+        return res.status(200).render(("veiwLink"),{
+            shortURLs
+        });
 	} catch (error) {
 		console.error(error);
 		return errorResponse(res, 500, "Failed to fetch shortened URLs")
@@ -136,7 +128,7 @@ export const getURLAnalytics = async (req: Request, res: Response) => {
 		if (!shortCodeCheck) {
 			return errorResponse(res, 409, "Invalid shortened URL")
 		}
-		return successResponse(res, 200, "URL analytics fetched successfully", shortCodeCheck);
+		return successResponse(res, 200, "URL analytics fetched successfully", {shortCodeCheck});
 	} catch (error) {
         console.log(error);
 		return errorResponse(res, 500, "Failed to fetch URL analytics")
