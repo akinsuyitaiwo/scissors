@@ -24,19 +24,17 @@ export const shortenUrl = async (req: Request, res: Response) =>{
         if(existCode){
             return errorResponse(res,409, "Short code already exist")
         }
-        const shortUrl =  `${config.HOST}/${shortCode}`;
-        const qrCodeData = await qrCode.toDataURL (shortUrl);
-
-        
+        const shortUrl =  `${config.HOST}/url/${shortCode}`;
+        const qrCodeData = await qrCode.toDataURL(shortUrl);
         const newUrl = await models.Url.create({
             shortCode,
             longUrl,
             shortUrl,
             QRCode: qrCodeData,
             userId: _id
-        })
+        });
         return res.status(200).render(("result"), {
-            newUrl
+             newUrl
         });
 
     } catch (error) {
@@ -84,9 +82,9 @@ export const viewLinks = async (req: Request, res: Response) => {
 		if(!user) {
 			return errorResponse(res, 409, "Kindly Login")
 		}
-		const URLs = await models.Url.find({ userId: user._id });
-		const shortURLs = URLs.map(url => ({ shortURL: url.shortUrl, longURL: url.longUrl }));
-        return res.status(200).render(("veiwLink"),{
+		const URLs = await models.Url.find({ userId: _id });
+		const shortURLs = URLs.map(url => ({ shortUrl: url.shortUrl, longUrl: url.longUrl }));
+        return res.status(200).render(("viewlinks"),{
             shortURLs
         });
 	} catch (error) {
@@ -98,7 +96,6 @@ export const viewLinks = async (req: Request, res: Response) => {
 export const viewLink = async (req: Request, res: Response) => {
 	try {
 		const { shortCode } = req.params;
-        console.log(shortCode)
 		const shortCodeCheck = await models.Url.findOne({ shortCode });
 		if (!shortCodeCheck) {
 			return errorResponse(res, 409, "Invalid shortened URL")
@@ -110,7 +107,6 @@ export const viewLink = async (req: Request, res: Response) => {
 			ipAddress: ipAddress,
 			userAgent: req.headers["user-agent"] || "Unknown"
 		};
-        console.log(newClick)
 		shortCodeCheck.clicks.push(newClick);
 		await shortCodeCheck.save();
 
@@ -128,7 +124,7 @@ export const getURLAnalytics = async (req: Request, res: Response) => {
 		if (!shortCodeCheck) {
 			return errorResponse(res, 409, "Invalid shortened URL")
 		}
-		return successResponse(res, 200, "URL analytics fetched successfully", {shortCodeCheck});
+		return (res.status(201).render("analytics"), {shortCodeCheck});
 	} catch (error) {
         console.log(error);
 		return errorResponse(res, 500, "Failed to fetch URL analytics")

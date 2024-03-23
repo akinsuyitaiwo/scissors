@@ -45,20 +45,20 @@
     <section id="urlbox">
       <h1>Paste the URL to be shortened</br>
         Note: Always start your link with "https://"</h1>
-      <form action="/" method="post">
+      <form action="/create" method="post">
         <div id="formurl">
-          <input type="url" name="longURL" placeholder="Enter the Link here"><br>
+          <input type="url" name="longUrl" placeholder="Enter the Link here"><br>
           <div id="formbutton">
             <input type="submit" value="Get Short Link">
           </div>
         </div>
       </form>
       <p class="boxtextcenter">
-      <h2>Hi, <%= newURL.username %>, here is the result</h2>
+      <h2>Hi, here is the result</h2>
       </hr></br>
-      Inputted URL = <a href="<%= newURL.longURL %>" target="_blank"><%= newURL.longURL %></a></br>
-      Shortened URL = <a href="<%= newURL.shortURL %>" target="_blank"><%= newURL.shortURL %></a></br>
-      <img src="<%= newURL.QRCode %>" alt="QR Code">
+      Inputed URL = <a href="<%= newUrl.longUrl %>" target="_blank"><%= newUrl.longUrl %></a></br>
+      Shortened URL = <a href="<%= newUrl.shortUrl %>" target="_blank"><%= newUrl.shortUrl %></a></br>
+      <img src="<%= newUrl.QRCode %>" alt="QR Code">
       </p>
       <hero>
         <a href="/views/dashboard">Go back to dashboard</a>

@@ -13,7 +13,7 @@ router.get("/customize", (req, res) => {
 	res.render("customize");
 });
 
-router.post( "/create", verifyToken, shortenUrl)
+router.post("/create", verifyToken, shortenUrl)
 router.post("/customize", verifyToken, customiseUrl)
 router.get("/", verifyToken, viewLinks);
 router.get("/:shortCode", viewLink);

@@ -18,7 +18,6 @@ export default class Authentication {
         const parts = req.headers.authorization.split(" ");
         if (parts.length === 2 && /^Bearer$/i.test(parts[0])) {
           token = parts[1];
-          console.log("header token", token);
         } else {
           return res.status(401).send({
             status: false,
@@ -47,7 +46,7 @@ export default class Authentication {
       }
       const decoded: any = await jwt.verify(token, config.JWT_KEY as string);
       const user = await models.User.findById(decoded._id);
-  
+      console.log(user)
       if (!user) {
         return res.status(404).send({
           status: false,

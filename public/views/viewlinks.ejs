@@ -44,11 +44,6 @@
   <main>
     <section id="urlbox">
       <h1>Shortened URLs</h1>
-      <% if (user) { %>
-      <p><b>Welcome, <%= user.username %>!</b></p>
-      <% } else { %>
-      <p>Kindly login to view your shortened URLs.</p>
-      <% } %>
       <div>
         <% if (shortURLs.length > 0) { %>
         <h2>Your Shortened URLs:
@@ -57,8 +52,8 @@
         <ul>
           <% shortURLs.forEach(url => { %>
           <li>
-            Inputed URL - <%= url.longURL %></br>
-            Shorten URL - <a href="<%= url.shortURL %>"><%= url.shortURL %></a></br>
+            Inputed URL - <%= url.longUrl %></br>
+            Shorten URL - <a href="<%= url.shortUrl %>"><%= url.shortUrl %></a></br>
             <a href="/analytics/<%= url.shortCode %>" target="_blank"> View Analytics</a>
             <hr>
           </li>
