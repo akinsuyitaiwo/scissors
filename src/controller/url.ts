@@ -12,11 +12,11 @@ export const shortenUrl = async (req: Request, res: Response) =>{
         const {_id} = req.details;
         const user = await models.User.findById(_id);
         if(!user){
-            return res.status(409).render("createUrl")
+            return res.status(409).render("register")
         }
         const {error, value } = validateUrl(req.body);
         if(error){
-            return errorResponse(res, 409, error.message);
+            return errorResponse(res, 400, error.message);
         }
         const {longUrl} = value;
         const shortCode = generateRandomId(4);
@@ -33,7 +33,7 @@ export const shortenUrl = async (req: Request, res: Response) =>{
             QRCode: qrCodeData,
             userId: _id
         });
-        return res.status(200).render(("result"), {
+        return res.status(201).render(("result"), {
              newUrl
         });
 
@@ -51,7 +51,7 @@ export const customiseUrl = async( req: Request, res: Response)=>{
         }
         const {error, value } = validateShortenCode(req.body);
         if(error){
-            return errorResponse(res, 409, error.message);
+            return errorResponse(res, 400, error.message);
         }
         const {longUrl,shortCode} = value
         const existingShortCode = await models.Url.findOne({shortCode});
@@ -67,8 +67,8 @@ export const customiseUrl = async( req: Request, res: Response)=>{
             QRCode: qrCodeDataURL,
             userId : _id
         })
-        return res.status(200).render(("result"),{
-            data: urlData
+        return res.status(201).render(("result"),{
+             newUrl: urlData
         })
     } catch (error) {
         console.log(error)
@@ -124,7 +124,7 @@ export const getURLAnalytics = async (req: Request, res: Response) => {
 		if (!shortCodeCheck) {
 			return errorResponse(res, 409, "Invalid shortened URL")
 		}
-		return (res.status(201).render("analytics"), {shortCodeCheck});
+		return res.status(200).render(("analytics"), {shortCodeCheck});
 	} catch (error) {
         console.log(error);
 		return errorResponse(res, 500, "Failed to fetch URL analytics")

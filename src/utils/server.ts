@@ -11,7 +11,7 @@ const app = express();
 
 const limiter = rateLimit({
 	windowMs: 0.5 * 60 * 1000,
-	max: 10, 
+	max: 20, 
 	standardHeaders: true,
 	legacyHeaders: false,
 });

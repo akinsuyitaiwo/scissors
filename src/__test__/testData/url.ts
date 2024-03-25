@@ -1,31 +1,34 @@
-const url1 = {
-    longUrl : "https://playstation.com"
+export const url1 = {
+    longUrl : "https://instagram.com"
 }
 
-const url2 = {
-    longUrl : "https://spotify.com"
+export const url2 = {
+    longUrl : "://spotify.com"
 }
-const url3 = {
-    longUrl : "https://discord.com"
+export const url3 = {
+    longUrl : "https://discord"
 }
-const url4 = {
+export const url4 = {
     longUrl : "https://whatsapp.com"
 }
-const url5 = {
-    longUrl : "https://snapchat.com"
+export const url5 = {
+    shortCode: "ad70",
+    longUrl : "https://facebook.com"
 }
-const url6 = {
+export const url6 = {
+    shortCode: "s9u4",
     longUrl : "https://audiomack.com"
 }
-const url7 = {
-    longUrl : "https://fifa.com"
+export const url7 = {
+    shortCode: "s9u464566",
+    longUrl : "fifa.com"
 }
-const url8 = {
+export const url8 = {
     longUrl : "https://arsenal.com"
 }
-const url9 = {
+export const url9 = {
     longUrl : "https://visitruwanda.com"
 }
-const url10 = {
+export const url10 = {
     longUrl : "https://xbox.com"
 }

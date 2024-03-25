@@ -1,49 +1,37 @@
-const user1 = {
-	email: "taiwo@gmail.com",
+export const user1 = {
+	username: "taiwo",
+	email: "taiwo.com",
 	password: "password1"
 };
 
-const user2 = {
-	username: "temidayo@gmail.com",
+export const user2 = {
+	username: "taiwo",
+	email: "abc@gmail.com",
+	password: "password"
+};
+
+export const user3 = {
+	username: "jesus",
+	email: "tyler@gmail.com",
 	password: "password1"
 };
 
-const user3 = {
-	username: "tyler@gmail.com",
+export const user4 = {
+	email: "dayo@gmail.com"
+};
+
+export const user5 = {
+	email: "dcba@gmail.com",
 	password: "password1"
 };
 
-const user4 = {
-	username: "dayo@gmail.com",
+export const user6 = {
+	email: "abc@gmail.com",
 	password: "password1"
 };
 
-const user5 = {
-	username: "dcba@gmail.com",
-	password: "password1"
+export const user7 = {
+	email: "abc@gmail.com",
+	password: "password"
 };
 
-const user6 = {
-	username: "xyz@gmail.com",
-	password: "password1"
-};
-
-const user7 = {
-	username: "dao@gmail.com",
-	password: "password1"
-};
-
-const user8 = {
-	username: "akin@gmail.com",
-	password: "password1"
-};
-
-const user9 = {
-	username: "suyi@gmail.com",
-	password: "password1"
-};
-
-const user10 = {
-	username: "olu@gmail.com",
-	password: "password1"
-};

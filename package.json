@@ -8,7 +8,7 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "postinstall": "npm run build",
-    "test" : "jest"
+    "test" : "jest --watch"
   },
   "repository": {
     "type": "git",
