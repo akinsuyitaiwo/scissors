@@ -58,7 +58,7 @@ export const customiseUrl = async( req: Request, res: Response)=>{
         if (existingShortCode) {
 			return errorResponse(res, 409, "Short code already in use, please try another")
 		}
-        const shortUrl =  `${config.HOST}/${shortCode}`;
+        const shortUrl =  `${config.HOST}/url/${shortCode}`;
         const qrCodeDataURL = await qrCode.toDataURL(shortUrl)
         const urlData = await models.Url.create({
             longUrl,
@@ -83,7 +83,10 @@ export const viewLinks = async (req: Request, res: Response) => {
 			return errorResponse(res, 409, "Kindly Login")
 		}
 		const URLs = await models.Url.find({ userId: _id });
-		const shortURLs = URLs.map(url => ({ shortUrl: url.shortUrl, longUrl: url.longUrl }));
+        if(!URLs){
+            return errorResponse(res, 404, "Not found");
+        }
+		const shortURLs = URLs.map(url => ({ shortUrl: url.shortUrl, longUrl: url.longUrl, shortCode: url.shortCode}));
         return res.status(200).render(("viewlinks"),{
             shortURLs
         });
